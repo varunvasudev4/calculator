@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/578fca5906.js" crossorigin="anonymous"></script>
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body bg-dark rounded">
+                    <form action="">
+                        <!-- <h3 class="card-title"><input id="result2" type="text" class="form-control border-0 bg-dark text-end fs-1 text-light"></h3> -->
+                        <h3 class="card-title"><input id="result" type="text" class="form-control border-0 border-bottom border-2 bg-dark text-end fs-1 text-light" placeholder="0" style="border-radius: 0px;"></h3>
+                        <button class="btn btn-dark text-warning p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-c"></i></button>
+                        <button type="button" onclick="valueadd('del')" class="btn btn-dark text-warning p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-delete-left"></i></button>
+                        <button type="button" onclick="valueadd('%')" class="btn btn-dark text-warning p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-percent"></i></button>
+                        <button type="button" onclick="valueadd('/')" class="btn btn-dark text-warning p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-divide"></i></button>
+                        <br>
+                        <button type="button" onclick="valueadd(7)" class="btn btn-dark text-light p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-7"></i></button>
+                        <button type="button" onclick="valueadd(8)" class="btn btn-dark text-light p-3 mt-3 ms-5"><i class="fa-solid fa-2x fa-8"></i></button>
+                        <button type="button" onclick="valueadd(9)" class="btn btn-dark text-light p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-9"></i></i></button>
+                        <button type="button" onclick="valueadd('x')" class="btn btn-dark text-warning p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-xmark"></i></button>
+                        <br>
+                        <button type="button" onclick="valueadd(4)" class="btn btn-dark text-light p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-4"></i></button>
+                        <button type="button" onclick="valueadd(5)" class="btn btn-dark text-light p-3 mt-3 ms-5"><i class="fa-solid fa-2x fa-5"></i></button>
+                        <button type="button" onclick="valueadd(6)" class="btn btn-dark text-light p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-6"></i></i></button>
+                        <button type="button" onclick="valueadd('-')" class="btn btn-dark text-warning p-3 mt-3 ms-3"><i class="fa-solid fa-2x fa-minus"></i></button>
+                        <br>
+                        <button type="button" onclick="valueadd(1)" class="btn btn-dark text-light p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-1"></i></button>
+                        <button type="button" onclick="valueadd(2)" class="btn btn-dark text-light p-3 mt-3 ms-5"><i class="fa-solid fa-2x fa-2"></i></button>
+                        <button type="button" onclick="valueadd(3)" class="btn btn-dark text-light p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-3"></i></i></button>
+                        <button type="button" onclick="valueadd('+')" class="btn btn-dark text-warning p-3 mt-3 ms-4"><i class="fa-solid fa-2x fa-plus"></i></button>
+                        <br>
+                        <button type="button" class="btn btn-dark text-dark p-3 mt-2 ms-4"><i class="fa-solid fa-2x fa-1"></i></button>
+                        <button type="button" onclick="valueadd(0)" class="btn btn-dark text-light p-3 mt-2 ms-5"><i class="fa-solid fa-2x fa-0"></i></button>
+                        <button type="button" onclick="valueadd('.')" class="btn btn-dark text-light p-3 pt-2 pb-4 mt-2 ms-4 fs-1"> . &nbsp;</button>
+                        <button type="button" onclick="valueadd('=')"class="btn btn-warning text-light p-3 mt-2 ms-3 rounded-circle"><i class="fa-solid fa-2x fa-equals"></i></button>
+                    </form>
+                </div>
+              </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</body>
+<script>
+    str=""
+    //str2=""
+    arr=[]
+    function valueadd(numop) {
+        if(numop=="." && str[str.length-1]=="."){
+                numop=""
+        }
+        if(numop=='del'){
+            if(str=='0'){
+                str=""
+            }else{
+                num=Number(str)
+                flr=Math.floor(num)
+                if(flr<num && num<(flr+1)){
+                    //deci = num-flr
+                    //l = String(deci).length
+                    //console.log(deci.toString());
+                    str=flr
+                }else{
+                    str=Math.floor(Number(str)/10)
+                }
+            }
+            numop=""
+        }
+        //str2+=numop
+        if(numop=='+'||numop=='-'||numop=='x'||numop=='/'||numop=='%'){
+            arr.push(str)
+            arr.push(numop)
+            str=""
+            numop=""
+            //console.log(arr);
+        }else if(numop=='='){
+            arr.push(str)
+            str=""
+            numop=""
+            if(arr[1]=='+'){
+                str=Number(arr[0])+Number(arr[2])
+            }else if(arr[1]=='-'){
+                str=Number(arr[0])-Number(arr[2])
+            }else if(arr[1]=='x'){
+                str=Number(arr[0])*Number(arr[2])
+            }else if(arr[1]=='/'){
+                str=Number(arr[0])/Number(arr[2])
+            }else if(arr[1]=='%'){
+                str=Number(arr[0])%Number(arr[2])
+            }
+            arr=[]
+        }
+        str+=numop
+        document.querySelector('#result').value=str
+        //document.querySelector('#result2').value=str2
+    }
+    
+</script>
+</html>
